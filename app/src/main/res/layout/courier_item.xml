@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+    <LinearLayout
+        android:layout_width="60dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <View
+            android:layout_width="2dip"
+            android:layout_height="30dip"
+            android:background="@color/colorPrimary" />
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/timeline_green"/>
+        <View
+            android:layout_width="2dip"
+            android:layout_height="100dip"
+            android:background="@color/colorPrimary" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/timeline_content"
+        android:padding="5dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip"
+        android:layout_marginRight="10dip">
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:text="您的快件已经到达北京" />
+        <TextView
+            android:id="@+id/tv_zone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="20dip"
+            android:text="北京"/>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:text="2017-12-9"/>
+    </LinearLayout>
+
+</LinearLayout>

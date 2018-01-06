@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/butler_bg"
+    tools:context="com.example.xushiyun.smartbutler.ui.SplashActivity">
+
+    <TextView
+        android:id="@+id/tv_splash_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="智能管家"
+        android:gravity="center"
+        android:textSize="50dp" />
+
+</LinearLayout>

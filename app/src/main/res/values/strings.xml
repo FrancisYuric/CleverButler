@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SmartButler</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_activity_settingbutton">设置</string>
+    <string name="setting_text">设置</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="label_main_activity">主页</string>
+</resources>

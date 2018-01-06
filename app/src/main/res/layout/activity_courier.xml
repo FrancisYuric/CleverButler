@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.xushiyun.smartbutler.ui.CourierActivity">
+    <!--快递公司名称对应的代码,其实这里我是希望弄一个下拉栏来让用户自己选择对应的快递公司,而不是只有程序员能操作
+    但是当前的情况是在赶进度,和明显不能这么弄-->
+    <EditText
+        android:id="@+id/et_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sto"
+        android:hint="快递公司名称"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"/>
+    <EditText
+        android:id="@+id/et_courier_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3346427251508"
+        android:hint="快递单号"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"/>
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dip"
+        android:layout_marginLeft="25dip"
+        android:layout_marginRight="25dip"
+        android:textColor="@android:color/white"
+        android:text="查询"
+        android:background="@drawable/btn_bg"/>
+    <ListView
+        android:id="@+id/lv_courier"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:layout_weight="1"
+        android:layout_marginTop="15dip"
+        android:padding="10dip">
+
+    </ListView>
+</LinearLayout>

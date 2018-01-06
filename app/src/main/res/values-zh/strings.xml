@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">智能管家</string>
+    <string name="main_activity_settingbutton">设置</string>
+    <string name="setting_text">设置</string>
+    <string name="label_main_activity">主页</string>
+</resources>

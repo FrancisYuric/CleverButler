@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmartButler</string>
+    <string name="main_activity_settingbutton">设置</string>
+    <string name="label_main_activity">主页</string>
+</resources>

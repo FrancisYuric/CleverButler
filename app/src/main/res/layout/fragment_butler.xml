@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/user_bg"
+    tools:context="com.example.xushiyun.smartbutler.fragment.ButlerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ListView
+        android:id="@+id/lv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"></ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <!--<Button-->
+            <!--android:id="@+id/btn_left"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="左边"/>-->
+        <!--<Button-->
+            <!--android:id="@+id/btn_right"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="右边"/>-->
+        <EditText
+            android:id="@+id/et_send"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="65dip"
+            android:layout_height="40dip"
+            android:background="@drawable/btn_bg"
+            android:text="发送"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</LinearLayout>
