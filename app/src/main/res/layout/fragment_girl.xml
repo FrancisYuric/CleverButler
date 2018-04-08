@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.xushiyun.smartbutler.fragment.GirlFragment">
+    tools:context="com.example.xushiyun.smartbutler.fragment.MarketFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <GridView

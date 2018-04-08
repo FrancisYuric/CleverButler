@@ -39,7 +39,7 @@ import java.util.List;
  * 点击后弹出对话框,这里已经在之前进行封装了,然后是什么呢,将对话框其中的图片设置成与photoview进行关联
  * 最后改变style就行了
  */
-public class GirlFragment extends Fragment {
+public class MarketFragment extends Fragment {
     private GridView gv_girl;
 
     private List<GirlInfo> girlInfoList;

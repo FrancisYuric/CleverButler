@@ -12,11 +12,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.xushiyun.smartbutler.fragment.ButlerFragment;
-import com.example.xushiyun.smartbutler.fragment.GirlFragment;
+import com.example.xushiyun.smartbutler.fragment.MarketFragment;
 import com.example.xushiyun.smartbutler.fragment.UserFragment;
 import com.example.xushiyun.smartbutler.fragment.WechatFragment;
 import com.example.xushiyun.smartbutler.ui.SettingActivity;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragment = new ArrayList<>();
         mFragment.add(new ButlerFragment());
         mFragment.add(new WechatFragment());
-        mFragment.add(new GirlFragment());
+        mFragment.add(new MarketFragment());
         mFragment.add(new UserFragment());
     }
 
