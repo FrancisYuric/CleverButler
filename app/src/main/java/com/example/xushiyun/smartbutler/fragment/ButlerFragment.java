@@ -35,6 +35,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.newim.listener.BmobIMMessageHandler;
 import cn.bmob.v3.BmobUser;
 
 /**

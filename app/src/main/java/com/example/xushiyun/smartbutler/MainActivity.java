@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.xushiyun.smartbutler.fragment.ButlerFragment;
-import com.example.xushiyun.smartbutler.fragment.MarketFragment;
+import com.example.xushiyun.smartbutler.fragment.MainFragment;
 import com.example.xushiyun.smartbutler.fragment.UserFragment;
 import com.example.xushiyun.smartbutler.fragment.WechatFragment;
 import com.example.xushiyun.smartbutler.ui.SettingActivity;
@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //tablayout
-    private TabLayout mTablayout;
+    //tableLayout
+    private TabLayout mTabLayout;
     //viewPager
     private ViewPager mViewPager;
     //Title
@@ -50,26 +50,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //数据的初始化工作
     private void initData() {
         mTitle = new ArrayList<>();
-        mTitle.add("服务管家");
+        mTitle.add("校园生活");
         mTitle.add("话题精选");
-        mTitle.add("美女社区");
+        mTitle.add("服务管家");
         mTitle.add("个人中心");
 
         mFragment = new ArrayList<>();
-        mFragment.add(new ButlerFragment());
+        mFragment.add(new MainFragment());
         mFragment.add(new WechatFragment());
-        mFragment.add(new MarketFragment());
+        mFragment.add(new ButlerFragment());
+//        mFragment.add(new MarketFragment());
         mFragment.add(new UserFragment());
     }
 
     //界面的初始化工作
     private void initView() {
-        fbtn_setting = (FloatingActionButton) findViewById(R.id.icon_setting);
+        fbtn_setting = findViewById(R.id.icon_setting);
         //设置fbtn按钮默认形态为不可见
         fbtn_setting.setVisibility(View.INVISIBLE);
         fbtn_setting.setOnClickListener(this);
-        mTablayout = (TabLayout) findViewById(R.id.mTabLayout);
-        mViewPager = (ViewPager) findViewById(R.id.mViewPager);
+        mTabLayout = findViewById(R.id.mTabLayout);
+        mViewPager = findViewById(R.id.mViewPager);
         mViewPager.setOffscreenPageLimit(mFragment.size());
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        mTablayout.setupWithViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
