@@ -62,10 +62,10 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashActivityTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".ui.SettingActivity"
@@ -100,7 +100,13 @@
             android:value="iMHQBSoLMmbRDHFlOTeDUvkFrqL0GDo5" />
         <activity android:name=".ui.LocationActivity" />
 
-        <activity android:name=".ExampleActivity" />
+        <activity android:name=".ExampleActivity" >
+
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="Bmob_APP_KEY"

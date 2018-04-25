@@ -4,6 +4,7 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.example.xushiyun.smartbutler.ExampleActivity;
 import com.example.xushiyun.smartbutler.handler.MyIMMessageHandler;
 import com.example.xushiyun.smartbutler.utils.StaticClass;
 import com.iflytek.cloud.SpeechConstant;
@@ -56,7 +57,7 @@ public class BaseApplication extends Application {
 //        最好判断只有主进程运行的时候才进行初始化，避免资源浪费
         if (getApplicationInfo().packageName.equals(getMyProcessName())){
             BmobIM.init(this);
-            BmobIM.registerDefaultMessageHandler(new MyIMMessageHandler());
+            BmobIM.registerDefaultMessageHandler(new ExampleActivity.ImMessageHandler());
         }
     }
 
