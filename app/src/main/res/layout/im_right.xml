@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:gravity="right|center_vertical">
+    android:layout_height="wrap_content"
+    android:gravity="right|center_vertical"
+    android:orientation="horizontal">
+
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/content_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/chat_bg_user"
-        android:layout_marginRight="20dip"
         android:layout_marginLeft="15dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/chat_bg_user"
+        android:maxEms="15"
+        android:paddingBottom="5dip"
         android:paddingLeft="10dip"
         android:paddingRight="10dip"
         android:paddingTop="5dip"
-        android:paddingBottom="5dip"
         android:singleLine="false"
-    android:maxEms="15"
-        android:textColor="@android:color/white"/>
-    <ImageView
-        android:id="@+id/icon"
+        android:textColor="@android:color/white" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon_right"
         android:layout_width="50dip"
         android:layout_height="50dip"
-        android:src="@drawable/user"
-        android:layout_marginRight="10dip"/>
+        android:layout_marginRight="10dip"
+        android:src="@drawable/user" />
 
 </LinearLayout>

@@ -12,8 +12,8 @@ import java.io.Serializable;
 
 public class IMEntity implements Serializable {
     public int status = 0;
-    public String icon_url;
-    public String content;
+    public String icon_url = "";
+    public String content ="";
 
     public IMEntity(int status, String icon_url, String content) {
         this.status = status;

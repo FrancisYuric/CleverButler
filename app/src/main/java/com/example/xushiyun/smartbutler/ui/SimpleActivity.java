@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.xushiyun.smartbutler.utils.ObjectUtils;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by xushiyun on 2017/12/5.
  * Project Name: SmartButler
@@ -21,14 +26,43 @@ import android.view.View;
  * 3.统一的方法
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
-
+public abstract class SimpleActivity extends AppCompatActivity {
+    private Unbinder mUnbinder;
+    protected abstract Object setLayout();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //显示返回键
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(setLayout() instanceof Integer) {
+            setContentView((Integer) setLayout());
+        }
+        else if(setLayout() instanceof View) {
+            setContentView((View) setLayout());
+        }
+        mUnbinder = ButterKnife.bind(this);
+        onBindView();
+
+        initView();
+        initListener();
+        initData();
+    }
+
+    private void onBindView() {
+
+    }
+
+    protected void initData() {
+
+    }
+
+    protected void initListener() {
+
+    }
+
+    protected void initView() {
+
     }
 
     //菜单栏操作
@@ -42,5 +76,13 @@ public abstract class BaseActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(ObjectUtils.checkNotNull(mUnbinder)) {
+            mUnbinder.unbind();
+        }
     }
 }
