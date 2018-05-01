@@ -30,6 +30,12 @@
         android:background="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="350dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
         android:layout_height="350dp"/>
     <EditText
         android:id="@+id/et_message"

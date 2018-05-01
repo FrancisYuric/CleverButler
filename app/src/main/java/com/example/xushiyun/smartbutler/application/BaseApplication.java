@@ -9,6 +9,10 @@ import com.example.xushiyun.smartbutler.handler.MyIMMessageHandler;
 import com.example.xushiyun.smartbutler.utils.StaticClass;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
+import com.joanzapata.iconify.Iconify;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.joanzapata.iconify.fonts.IoniconsModule;
+import com.joanzapata.iconify.fonts.MaterialModule;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.BufferedReader;
@@ -45,6 +49,15 @@ public class BaseApplication extends Application {
 
         //TODO 集成：1.8、初始化IM SDK，并注册消息接收器
         initBmobIM();
+
+        initIconify();
+    }
+
+    private void initIconify() {
+        Iconify
+                .with(new FontAwesomeModule())
+                .with(new MaterialModule())
+                .with(new IoniconsModule());
     }
 
     private void initBmobIM() {

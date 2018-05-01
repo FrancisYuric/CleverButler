@@ -2,6 +2,7 @@ package com.example.xushiyun.smartbutler;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.xushiyun.smartbutler.adapter.IMMultiAdapter;
+import com.example.xushiyun.smartbutler.entity.IMEntity;
 import com.example.xushiyun.smartbutler.ui.BaseActivity;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
@@ -20,6 +23,8 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -27,6 +32,7 @@ import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.bmob.newim.core.BmobIMClient;
+import cn.bmob.newim.event.IMEvent;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.BmobIMMessageHandler;
@@ -52,6 +58,11 @@ public class ExampleActivity extends BaseActivity {
     private BmobIMConversation mBmobIMConversation;
     private static TextView tv_message;
     private EditText et_message;
+
+    private IMMultiAdapter imMultiAdapter;
+    private final List<IMEntity> entityList = new ArrayList<>();
+    private RecyclerView recyclerView;
+
     private Button connect;
     private Button open;
 
@@ -98,6 +109,8 @@ public class ExampleActivity extends BaseActivity {
                 openConversation();
             }
         });
+
+        recyclerView = findViewById(R.id.recyclerView);
     }
 
     private void connect() {

@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
     <com.bigkoo.convenientbanner.ConvenientBanner
+        android:background="@color/weChatBlack"
         android:id="@+id/convenientBanner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:canLoop="true"></com.bigkoo.convenientbanner.ConvenientBanner>
+        app:canLoop="true"/>
+    <com.joanzapata.iconify.widget.IconTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:text="{fa-cog}  功能分类"/>
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/main_fragment_category_tab"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="主界面" />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/main_fragment_category_tab"
-        android:gravity="center"
-        android:text="主界面" />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/main_fragment_category_tab1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="活动" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/main_fragment_category_tab"
-        android:gravity="center"
-        android:text="主界面" />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/main_fragment_category_tab2"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="课表" />
 
-</LinearLayout>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/main_fragment_category_tab3"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="新闻" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/main_fragment_category_tab4"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="交流" />
+
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

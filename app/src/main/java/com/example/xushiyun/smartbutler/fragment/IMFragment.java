@@ -1,9 +1,17 @@
 package com.example.xushiyun.smartbutler.fragment;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.xushiyun.smartbutler.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by xushiyun on 2018/4/25.
@@ -14,8 +22,12 @@ import com.example.xushiyun.smartbutler.R;
  */
 
 public class IMFragment extends BaseFragment {
-    private SwipeRefreshLayout swipeRefreshLayout = null;
-    private RecyclerView contentRecyclerView = null;
+
+    @BindView(R.id.fragment_im_content_recyclerView)
+    RecyclerView contentRecyclerView;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected Object setLayout() {
         return R.layout.fragment_im;
@@ -25,4 +37,5 @@ public class IMFragment extends BaseFragment {
     protected void initView() {
         super.initView();
     }
+
 }

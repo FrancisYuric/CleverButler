@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">#D2D8E8</color>
+    <color name="weChatBlack">#101010</color>
+
+    <color name="categoryColor1">#FF6B8F</color>
+    <color name="categoryColor2">#D283F7</color>
+    <color name="categoryColor3">#FF6BBB</color>
+    <color name="categoryColor4">#74E34D</color>
 </resources>

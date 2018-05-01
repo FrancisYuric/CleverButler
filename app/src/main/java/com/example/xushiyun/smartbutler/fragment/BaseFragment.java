@@ -7,6 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.xushiyun.smartbutler.utils.ObjectUtils;
+import com.example.xushiyun.smartbutler.utils.UtilsTools;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by xushiyun on 2018/4/25.
  * Project Name: CleverButler
@@ -16,24 +22,35 @@ import android.view.ViewGroup;
  */
 
 public abstract class BaseFragment extends Fragment {
+    private Unbinder mUnbinder;
 
     protected abstract Object setLayout();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = null;
+        View rootView = null;
         if (setLayout() instanceof Integer) {
-            view = inflater.inflate((int) setLayout(), container, false);
+            rootView = inflater.inflate((int) setLayout(), container, false);
         } else if (setLayout() instanceof View) {
-            view = (View)setLayout();
+            rootView = (View) setLayout();
+        } else {
+            throw new ClassCastException("setLayout() type must be int or View!");
         }
+        if (!ObjectUtils.checkNotNull(rootView)) {
+            mUnbinder = ButterKnife.bind(this, rootView);
+        }
+        onBindView(savedInstanceState, rootView);
         initView();
         initListener();
         initViewContent();
         initData();
 
-        return view;
+        return rootView;
+    }
+
+    protected void onBindView(Bundle savedInstanceState, View rootView) {
+
     }
 
     protected void initData() {
@@ -50,6 +67,15 @@ public abstract class BaseFragment extends Fragment {
 
     protected void initView() {
 
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 
 }
