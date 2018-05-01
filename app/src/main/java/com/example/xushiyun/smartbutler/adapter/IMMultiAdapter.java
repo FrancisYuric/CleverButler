@@ -1,8 +1,6 @@
 package com.example.xushiyun.smartbutler.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +9,7 @@ import android.widget.TextView;
 
 import com.example.xushiyun.smartbutler.R;
 import com.example.xushiyun.smartbutler.entity.IMEntity;
-import com.example.xushiyun.smartbutler.holder.ViewHolder.BaseRecyclerViewHolder;
-import com.example.xushiyun.smartbutler.utils.L;
-import com.example.xushiyun.smartbutler.utils.ObjectUtils;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -75,7 +68,7 @@ public class IMMultiAdapter extends RecyclerView.Adapter {
             ((LeftViewHolder) holder).content_left.setText(entity.content);
         }else if(holder instanceof RightViewHolder) {
             if(!TextUtils.isEmpty(entity.content))
-                ((RightViewHolder) holder).content_rught.setText(entity.content);
+                ((RightViewHolder) holder).content_right.setText(entity.content);
         }
     }
 
@@ -99,7 +92,7 @@ public class IMMultiAdapter extends RecyclerView.Adapter {
         @BindView(R.id.icon_right)
         CircleImageView icon_right;
         @BindView(R.id.content_right)
-        TextView content_rught;
+        TextView content_right;
         public RightViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

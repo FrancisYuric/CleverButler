@@ -78,6 +78,7 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener{
             case R.id.btn_send:
                 imEntities.add(new IMEntity(0, null, "111111111"));
                 imMultiAdapter.notifyDataSetChanged();
+                chat_log.scrollToPosition(imEntities.size()-1);
                 break;
         }
     }
