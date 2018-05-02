@@ -41,7 +41,7 @@ public class BaseApplication extends Application {
 
         // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
         // 请勿在“=”与appid之间添加任何空字符或者转义符
-        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=" + StaticClass.XFYUN_APP_ID);
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=" + StaticClass.XFYUN_APP_ID);
 
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         //注意该方法要再setContentView方法之前实现
@@ -65,10 +65,10 @@ public class BaseApplication extends Application {
         Bmob.initialize(this, "7801fcefd53f15f9c2e01615634767bc");
 
 
-        //TODO 集成：1.8、初始化IM SDK，并注册消息接收器
 //        初始化方法包含了DataSDK的初始化步骤，故无需再初始化DataSDK。
 //        最好判断只有主进程运行的时候才进行初始化，避免资源浪费
-        if (getApplicationInfo().packageName.equals(getMyProcessName())){
+        //TODO 集成：1.8、初始化IM SDK，并注册消息接收器
+        if (getApplicationInfo().packageName.equals(getMyProcessName())) {
             BmobIM.init(this);
             BmobIM.registerDefaultMessageHandler(new ExampleActivity.ImMessageHandler());
         }
@@ -77,6 +77,7 @@ public class BaseApplication extends Application {
 
     /**
      * 获取当前运行的进程名
+     *
      * @return
      */
     public static String getMyProcessName() {

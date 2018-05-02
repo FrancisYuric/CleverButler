@@ -56,10 +56,10 @@ public class ExampleActivity extends BaseActivity {
     private EditText et_receiver_id;
     private boolean isOpenConversation = false;
     private BmobIMConversation mBmobIMConversation;
-    private static TextView tv_message;
+    private  static  TextView tv_message;
     private EditText et_message;
 
-    private IMMultiAdapter imMultiAdapter;
+    private IMMultiAdapter imMultiAdazpter;
     private final List<IMEntity> entityList = new ArrayList<>();
     private RecyclerView recyclerView;
 
@@ -72,13 +72,13 @@ public class ExampleActivity extends BaseActivity {
         public void onMessageReceive(MessageEvent messageEvent) {
             super.onMessageReceive(messageEvent);
             //在线消息
-            ExampleActivity.tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
+            tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
         }
 
         @Override
         public void onOfflineReceive(OfflineMessageEvent offlineMessageEvent) {
             super.onOfflineReceive(offlineMessageEvent);
-            //离线消息
+            //离线消息，每次connect的时候会查询离线消息，如果有，此方法会被调用
         }
     }
 
@@ -99,6 +99,7 @@ public class ExampleActivity extends BaseActivity {
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(ExampleActivity.this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show();
                 connect();
             }
         });
@@ -119,9 +120,9 @@ public class ExampleActivity extends BaseActivity {
             public void done(String s, BmobException e) {
                 if (e == null){
                     isConnect = true;
-                    Log.i("TAG","服务器连接成功");
+                    Log.e("TAG","服务器连接成功");
                 }else {
-                    Log.i("TAG",e.getMessage()+"  "+e.getErrorCode());
+                    Log.e("TAG",e.getMessage()+"  "+e.getErrorCode());
                 }
             }
         });
