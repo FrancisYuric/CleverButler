@@ -19,6 +19,10 @@ import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -66,28 +70,39 @@ public class ExampleActivity extends BaseActivity {
     private Button connect;
     private Button open;
 
-    public static class ImMessageHandler extends BmobIMMessageHandler {
-
-        @Override
-        public void onMessageReceive(MessageEvent messageEvent) {
-            super.onMessageReceive(messageEvent);
-            //在线消息
-            tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
-        }
-
-        @Override
-        public void onOfflineReceive(OfflineMessageEvent offlineMessageEvent) {
-            super.onOfflineReceive(offlineMessageEvent);
-            //离线消息，每次connect的时候会查询离线消息，如果有，此方法会被调用
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onReceiveMessage(MessageEvent messageEvent) {
+        tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
     }
+
+//    public static class ImMessageHandler extends BmobIMMessageHandler {
+//
+//        @Override
+//        public void onMessageReceive(MessageEvent messageEvent) {
+//            super.onMessageReceive(messageEvent);
+//            //在线消息
+//            tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
+//        }
+//
+//        @Override
+//        public void onOfflineReceive(OfflineMessageEvent offlineMessageEvent) {
+//            super.onOfflineReceive(offlineMessageEvent);
+//            //离线消息，每次connect的时候会查询离线消息，如果有，此方法会被调用
+//        }
+//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example);
 
+        initSDKs();
         initView();
+
+    }
+
+    private void initSDKs() {
+        EventBus.getDefault().register(this);
     }
 
     private void initView() {
@@ -159,4 +174,9 @@ public class ExampleActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

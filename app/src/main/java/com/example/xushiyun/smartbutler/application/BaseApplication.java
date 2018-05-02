@@ -34,6 +34,7 @@ import cn.bmob.v3.listener.SaveListener;
  */
 
 public class BaseApplication extends Application {
+    private MyIMMessageHandler myIMMessageHandler;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -70,7 +71,9 @@ public class BaseApplication extends Application {
         //TODO 集成：1.8、初始化IM SDK，并注册消息接收器
         if (getApplicationInfo().packageName.equals(getMyProcessName())) {
             BmobIM.init(this);
-            BmobIM.registerDefaultMessageHandler(new ExampleActivity.ImMessageHandler());
+            myIMMessageHandler = MyIMMessageHandler.getInstance();
+            BmobIM.registerDefaultMessageHandler(myIMMessageHandler);
+//            BmobIM.registerDefaultMessageHandler(new ExampleActivity.ImMessageHandler());
         }
     }
 
@@ -91,5 +94,11 @@ public class BaseApplication extends Application {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        myIMMessageHandler.unbind();
     }
 }
