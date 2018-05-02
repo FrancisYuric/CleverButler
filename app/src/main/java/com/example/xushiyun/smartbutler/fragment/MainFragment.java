@@ -1,14 +1,17 @@
 package com.example.xushiyun.smartbutler.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.example.xushiyun.smartbutler.ExampleActivity;
 import com.example.xushiyun.smartbutler.R;
 import com.example.xushiyun.smartbutler.holder.view.LocalImageHolderView;
 import com.example.xushiyun.smartbutler.utils.L;
@@ -24,9 +27,11 @@ import java.util.List;
  * Description: Todo
  */
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements View.OnClickListener{
     private ConvenientBanner convenientBanner;
     private List<Integer> localImages = new ArrayList<>();
+
+    private AppCompatTextView communicate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,10 +65,20 @@ public class MainFragment extends Fragment {
     }
 
     private void initListener() {
-
+        communicate.setOnClickListener(this);
     }
 
     private void initView(View view) {
         convenientBanner = view.findViewById(R.id.convenientBanner);
+        communicate = view.findViewById(R.id.communicate);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.communicate:
+                startActivity(new Intent(getContext(), ExampleActivity.class));
+                break;
+        }
     }
 }

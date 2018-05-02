@@ -60,6 +60,7 @@
             android:text="新闻" />
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/communicate"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginRight="5dp"

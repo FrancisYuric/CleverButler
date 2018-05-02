@@ -34,7 +34,7 @@ import cn.bmob.v3.listener.SaveListener;
  */
 
 public class BaseApplication extends Application {
-    private MyIMMessageHandler myIMMessageHandler;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -63,7 +63,8 @@ public class BaseApplication extends Application {
 
     private void initBmobIM() {
         //测试成功,已经能够集成bmob sdk
-        Bmob.initialize(this, "7801fcefd53f15f9c2e01615634767bc");
+//        初始化方法包含了DataSDK的初始化步骤，故无需再初始化DataSDK。
+//        Bmob.initialize(this, "7801fcefd53f15f9c2e01615634767bc");
 
 
 //        初始化方法包含了DataSDK的初始化步骤，故无需再初始化DataSDK。
@@ -71,9 +72,7 @@ public class BaseApplication extends Application {
         //TODO 集成：1.8、初始化IM SDK，并注册消息接收器
         if (getApplicationInfo().packageName.equals(getMyProcessName())) {
             BmobIM.init(this);
-            myIMMessageHandler = MyIMMessageHandler.getInstance();
-            BmobIM.registerDefaultMessageHandler(myIMMessageHandler);
-//            BmobIM.registerDefaultMessageHandler(new ExampleActivity.ImMessageHandler());
+            BmobIM.registerDefaultMessageHandler(MyIMMessageHandler.getInstance());
         }
     }
 
@@ -99,6 +98,5 @@ public class BaseApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        myIMMessageHandler.unbind();
     }
 }
