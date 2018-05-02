@@ -6,6 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.xushiyun.smartbutler.utils.ObjectUtils;
+
+import java.nio.file.attribute.FileAttribute;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by xushiyun on 2017/12/5.
  * Project Name: SmartButler
@@ -42,5 +49,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

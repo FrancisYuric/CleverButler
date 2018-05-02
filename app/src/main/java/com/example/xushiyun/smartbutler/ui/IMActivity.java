@@ -17,14 +17,21 @@ import com.example.xushiyun.smartbutler.adapter.IMMultiAdapter;
 import com.example.xushiyun.smartbutler.application.BaseApplication;
 import com.example.xushiyun.smartbutler.constant.ConstantIM;
 import com.example.xushiyun.smartbutler.entity.IMEntity;
+import com.example.xushiyun.smartbutler.helper.EventBusHelper;
+import com.example.xushiyun.smartbutler.helper.IMHelper;
 import com.example.xushiyun.smartbutler.utils.InputUtils;
 import com.example.xushiyun.smartbutler.utils.L;
+import com.example.xushiyun.smartbutler.utils.MyTextUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.v3.exception.BmobException;
 
@@ -61,6 +68,10 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener {
 
     private String friendName = null;//当前聊天对象
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onReceiveMessage(MessageEvent messageEvent) {
+        addRecyclerViewItem(messageEvent.getMessage().getContent(), Boolean.FALSE);
+    }
 
     @Override
     protected void initView() {
@@ -71,7 +82,7 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener {
     protected void initData() {
         super.initData();
         receiver_id = getIntent().getStringExtra(ConstantIM.CURRENT_ID);
-        if(TextUtils.isEmpty(receiver_id)) {
+        if (TextUtils.isEmpty(receiver_id)) {
             receiver_id = sender_id;
         }
     }
@@ -85,6 +96,8 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener {
     @Override
     protected void initLogic() {
         super.initLogic();
+        IMHelper.connect();
+        EventBusHelper.register(this);
         chat_log.setLayoutManager(new LinearLayoutManager(this));
         imMultiAdapter = new IMMultiAdapter(imEntities);
         chat_log.setAdapter(imMultiAdapter);
@@ -95,11 +108,21 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_send:
-                imEntities.add(new IMEntity(0, null, "111111111"));
-                imMultiAdapter.notifyDataSetChanged();
-                chat_log.scrollToPosition(imEntities.size() - 1);
+                if (TextUtils.isEmpty(inputEditText.getText().toString().trim())) {
+                    return;
+                }
+                final String messageContent = inputEditText.getText().toString().trim();
+                IMHelper.openConversation(IMHelper.getCurrentUsername(), messageContent);
+                addRecyclerViewItem(messageContent, Boolean.TRUE);
+                MyTextUtils.cleanEditTextMessage(inputEditText);
                 break;
         }
+    }
+
+    private void addRecyclerViewItem(String messageContent, boolean isLeft) {
+        imEntities.add(new IMEntity(isLeft?0:1, null, messageContent));
+        imMultiAdapter.notifyDataSetChanged();
+        chat_log.scrollToPosition(imEntities.size() - 1);
     }
 
     @Override
@@ -116,5 +139,12 @@ public class IMActivity extends SimpleActivity implements View.OnClickListener {
             return true;
         }
         return onTouchEvent(ev);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBusHelper.unregister(this);
+        IMHelper.disconnect();
     }
 }
