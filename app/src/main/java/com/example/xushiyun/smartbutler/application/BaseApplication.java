@@ -22,6 +22,7 @@ import java.io.FileReader;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -33,7 +34,7 @@ import cn.bmob.v3.listener.SaveListener;
  * Descripetion: Todo
  */
 
-public class BaseApplication extends Application {
+public final class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
@@ -53,6 +54,7 @@ public class BaseApplication extends Application {
 
         initIconify();
     }
+
 
     private void initIconify() {
         Iconify

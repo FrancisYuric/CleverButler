@@ -14,6 +14,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.example.xushiyun.smartbutler.ExampleActivity;
 import com.example.xushiyun.smartbutler.R;
 import com.example.xushiyun.smartbutler.holder.view.LocalImageHolderView;
+import com.example.xushiyun.smartbutler.ui.IMActivity;
 import com.example.xushiyun.smartbutler.utils.L;
 
 import java.util.ArrayList;
@@ -27,11 +28,12 @@ import java.util.List;
  * Description: Todo
  */
 
-public class MainFragment extends Fragment implements View.OnClickListener{
+public class MainFragment extends Fragment implements View.OnClickListener {
     private ConvenientBanner convenientBanner;
     private List<Integer> localImages = new ArrayList<>();
 
     private AppCompatTextView communicate;
+    private AppCompatTextView activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,12 +67,14 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initListener() {
+        activity.setOnClickListener(this);
         communicate.setOnClickListener(this);
     }
 
     private void initView(View view) {
         convenientBanner = view.findViewById(R.id.convenientBanner);
         communicate = view.findViewById(R.id.communicate);
+        activity = view.findViewById(R.id.activity);
     }
 
     @Override
@@ -78,6 +82,11 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.communicate:
                 startActivity(new Intent(getContext(), ExampleActivity.class));
+                break;
+            case R.id.activity:
+                startActivity(new Intent(getContext(), IMActivity.class));
+                break;
+            default:
                 break;
         }
     }

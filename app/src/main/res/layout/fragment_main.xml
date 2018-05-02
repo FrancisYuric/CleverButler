@@ -37,6 +37,7 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/main_fragment_category_tab1"
             android:gravity="center"
+            android:id="@+id/activity"
             android:textSize="18sp"
             android:text="活动" />
 

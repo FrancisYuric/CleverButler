@@ -27,26 +27,35 @@ import butterknife.Unbinder;
  */
 
 public abstract class SimpleActivity extends AppCompatActivity {
+    protected Object setTitle() {
+        return null;
+    }
+
     private Unbinder mUnbinder;
+
     protected abstract Object setLayout();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //显示返回键
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if(setLayout() instanceof Integer) {
+        if (setLayout() instanceof Integer) {
             setContentView((Integer) setLayout());
-        }
-        else if(setLayout() instanceof View) {
+        } else if (setLayout() instanceof View) {
             setContentView((View) setLayout());
         }
         mUnbinder = ButterKnife.bind(this);
         onBindView();
-
         initView();
         initListener();
+        initLogic();
         initData();
+    }
+
+    protected void initLogic(){
+
     }
 
     private void onBindView() {
@@ -54,7 +63,13 @@ public abstract class SimpleActivity extends AppCompatActivity {
     }
 
     protected void initData() {
-
+        if (!ObjectUtils.checkNotNull(setTitle())) {
+            if (setTitle() instanceof String) {
+                getSupportActionBar().setTitle((CharSequence) setTitle());
+            } else if (setTitle() instanceof Integer) {
+                getSupportActionBar().setTitle((Integer) setTitle());
+            }
+        }
     }
 
     protected void initListener() {
@@ -81,7 +96,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(ObjectUtils.checkNotNull(mUnbinder)) {
+        if (ObjectUtils.checkNotNull(mUnbinder)) {
             mUnbinder.unbind();
         }
     }

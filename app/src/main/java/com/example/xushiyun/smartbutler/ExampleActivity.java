@@ -11,7 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.xushiyun.smartbutler.adapter.IMMultiAdapter;
+import com.example.xushiyun.smartbutler.application.BaseApplication;
 import com.example.xushiyun.smartbutler.entity.IMEntity;
+import com.example.xushiyun.smartbutler.helper.IMHelper;
 import com.example.xushiyun.smartbutler.ui.BaseActivity;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
@@ -43,6 +45,7 @@ import cn.bmob.newim.listener.BmobIMMessageHandler;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConversationListener;
 import cn.bmob.newim.listener.MessageSendListener;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 
 /**
@@ -75,22 +78,6 @@ public class ExampleActivity extends BaseActivity {
         tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
     }
 
-//    public static class ImMessageHandler extends BmobIMMessageHandler {
-//
-//        @Override
-//        public void onMessageReceive(MessageEvent messageEvent) {
-//            super.onMessageReceive(messageEvent);
-//            //在线消息
-//            tv_message.append("接收到："+messageEvent.getMessage().getContent()+"\n");
-//        }
-//
-//        @Override
-//        public void onOfflineReceive(OfflineMessageEvent offlineMessageEvent) {
-//            super.onOfflineReceive(offlineMessageEvent);
-//            //离线消息，每次connect的时候会查询离线消息，如果有，此方法会被调用
-//        }
-//    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,14 +102,19 @@ public class ExampleActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ExampleActivity.this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show();
-                connect();
+//                connect();
+                IMHelper.connect();
             }
         });
         open = findViewById(R.id.open);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openConversation();
+//                openConversation();
+                IMHelper.openConversation(IMHelper.getCurrentUsername(), et_message.getText().toString());
+                tv_message.append("发送者："+et_message.getText().toString()+"\n");
+                et_message.setText("");
+
             }
         });
 
@@ -130,7 +122,7 @@ public class ExampleActivity extends BaseActivity {
     }
 
     private void connect() {
-        BmobIM.connect(et_connect_id.getText().toString(), new ConnectListener() {
+        BmobIM.connect(et_connect_id.getText().toString().trim(), new ConnectListener() {
             @Override
             public void done(String s, BmobException e) {
                 if (e == null){
@@ -146,7 +138,8 @@ public class ExampleActivity extends BaseActivity {
     private void openConversation() {
         BmobIMUserInfo info =new BmobIMUserInfo();
         info.setAvatar("填写接收者的头像");
-        info.setUserId(et_receiver_id.getText().toString());
+//        info.setUserId(et_receiver_id.getText().toString().trim());
+        info.setUserId(BmobUser.getCurrentUser().getUsername().trim());
         info.setName("填写接收者的名字");
         BmobIM.getInstance().startPrivateConversation(info, new ConversationListener() {
             @Override
@@ -178,5 +171,6 @@ public class ExampleActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        IMHelper.disconnect();
     }
 }
